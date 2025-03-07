@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>myProfile</title>
 </head>
 <body>
   <h1>Hello, world!</h1>
+  <h1 th:text="${#authentication.principal.fullName}"></h1>
+  <br><br>
+
+  <h2 sec:authorize="hasAuthority('ROLE_USER')">HELLO, Обычный юзер!</h2>
+
+  <a sec:authorize="hasAuthority('ROLE_ADMIN')" th:href="@{'/admin'}">ADMIN</a>
+  <a sec:authorize="hasAnyAuthority('ROLE_MODERATOR', 'ROLE_ADMIN')" th:href="@{'/moderator'}">MODERATOR</a>
+
+  <br><br>
 <form th:action="@{'/logoutbek'}" method="post">
   <button>LOGOUT!</button>
 </form>

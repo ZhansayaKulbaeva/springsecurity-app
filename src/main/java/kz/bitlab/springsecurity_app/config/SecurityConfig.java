@@ -1,5 +1,6 @@
 package kz.bitlab.springsecurity_app.config;
 
+import kz.bitlab.springsecurity_app.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,8 +18,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 public class SecurityConfig {
 
     @Bean
-    public kz.bitlab.springsecurity_app.service.UserService userService() {
-        return new kz.bitlab.springsecurity_app.service.UserService();
+    public UserService userService() {
+        return new UserService();
     }
 
     @Bean
@@ -33,6 +34,7 @@ public class SecurityConfig {
 
         http.authorizeRequests(
                 authorize -> authorize
+                        .requestMatchers("/myProfile").authenticated()
                         .anyRequest().permitAll()
         ).formLogin(
                 login -> login

@@ -53,4 +53,16 @@ public class HomeController {
             return "redirect:register?someError";
         }
     }
+
+    @PostMapping("/updatePassword")
+    public String updatePassword(@RequestParam("oldPassword") String oldPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 @RequestParam("repeatNewPassword") String repeatNewPassword) {
+        Boolean check = userService.updatePassword(oldPassword, newPassword, repeatNewPassword);
+        if (check){
+            return "redirect:/myProfile";
+        }else {
+            return "redirect:myProfile?someError";
+        }
+    }
 }

@@ -18,5 +18,17 @@
 <form th:action="@{'/logoutbek'}" method="post">
   <button>LOGOUT!</button>
 </form>
+
+<br><br>
+
+<form th:action="@{'/updatePassword'}" method="post">
+    oldPassword: <input type="text" name="oldPassword">
+    <br><br>
+    newPassword: <input type="text" name="newPassword">
+    <br><br>
+    repeatNewPassword <input type="text" name="repeatNewPassword">
+    <br><br>
+    <button>SUBMIT</button>
+</form>
 </body>
 </html>
